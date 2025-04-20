@@ -1,0 +1,30 @@
+{
+  "name": "gravity-simulation",
+  "author": "Matthieu LEPERS",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint ./src --fix",
+    "dev": "vite",
+    "preview": "vite preview",
+    "build": "tsc && vite build"
+  },
+  "devDependencies": {
+    "@types/dat.gui": "^0.7.13",
+    "@types/node": "^22.14.1",
+    "@typescript-eslint/parser": "^6.21.0",
+    "@webgpu/types": "^0.1.60",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.1.0",
+    "eslint-import-resolver-typescript": "^4.3.3",
+    "eslint-plugin-import": "^2.31.0",
+    "typescript": "~5.7.2",
+    "vite": "^6.3.1"
+  },
+  "dependencies": {
+    "dat.gui": "^0.7.9",
+    "wgpu-matrix": "^3.4.0"
+  }
+}
