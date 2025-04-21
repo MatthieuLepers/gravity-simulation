@@ -21,14 +21,18 @@ interface GUIParams {
 }
 
 export async function main() {
+  const warning = document.getElementById('warning');
+
   if (!navigator.gpu) {
     console.error('WebGPU n\'est pas supporté par votre navigateur !');
+    warning?.classList.remove('hide');
     return;
   }
 
   const adapter = await navigator.gpu.requestAdapter();
   if (!adapter) {
     console.error('WebGPU Adapter non disponible !');
+    warning?.classList.remove('hide');
     return;
   }
 
