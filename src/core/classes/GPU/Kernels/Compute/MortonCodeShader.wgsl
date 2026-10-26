@@ -75,7 +75,7 @@ fn morton3D(position: vec3<f32>) -> u32 {
   return interleave_bits(xi, yi, zi);
 }
 
-fn setHilbertIndex(particleIndex: u32, hilbert: vec4<u32>) {
+fn setMortonIndex(particleIndex: u32, hilbert: vec4<u32>) {
   let dimX = textureDimensions(hilbertTextureWrite).x;
   let x = i32(particleIndex % dimX);
   let y = i32((particleIndex / dimX));
@@ -84,7 +84,7 @@ fn setHilbertIndex(particleIndex: u32, hilbert: vec4<u32>) {
 }
 
 @compute @workgroup_size(256)
-fn cs_hilbert_curve(@builtin(global_invocation_id) id: vec3<u32>) {
+fn cs_morton_code(@builtin(global_invocation_id) id: vec3<u32>) {
   let i = id.x;
   if (i >= PARTICLE_COUNT) { return; }
 
@@ -93,5 +93,5 @@ fn cs_hilbert_curve(@builtin(global_invocation_id) id: vec3<u32>) {
   let mortonKey = morton3D(particle.position);
 
   // rg32uint stores the 32-bit key and original particle index without float conversion.
-  setHilbertIndex(i, vec4<u32>(mortonKey, i, 0u, 0u));
+  setMortonIndex(i, vec4<u32>(mortonKey, i, 0u, 0u));
 }

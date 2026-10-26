@@ -2,6 +2,7 @@ import type { GPUContext } from '@/core/classes/GPU/Context';
 import { ComputePass } from '@/core/classes/GPU/Passes/ComputePass';
 import { InitParticlesKernel } from '@/core/classes/GPU/Kernels/Compute/InitParticlesKernel';
 import { GravityKernel } from '@/core/classes/GPU/Kernels/Compute/GravityKernel';
+import { MortonCodeKernel } from '@/core/classes/GPU/Kernels/Compute/MortonCodeKernel';
 // import { CollisionKernel } from '@/core/classes/GPU/Kernels/Compute/CollisionKernel';
 
 export const MakeInterstellarCloud = async (context: GPUContext) => {
@@ -12,6 +13,7 @@ export const MakeInterstellarCloud = async (context: GPUContext) => {
     await pass1.addKernel(new InitParticlesKernel(context));
     context.initParticlesDone = true;
   }
+  await pass1.addKernel(new MortonCodeKernel(context));
   await pass1.addKernel(new GravityKernel(context));
   // await pass1.addKernel(new CollisionKernel(context));
   await pass1.submit();

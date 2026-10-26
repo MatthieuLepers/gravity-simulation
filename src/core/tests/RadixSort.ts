@@ -1,18 +1,18 @@
-import { HILBERT_INDEX_STRIDE } from '@/core/classes/GPU/Kernels/Compute/HilbertCurveKernel';
+import { MORTON_INDEX_STRIDE } from '@/core/classes/GPU/Kernels/Compute/MortonCodeKernel';
 import { readStorageTexture } from '@/core/classes/utils';
 import { extractData, getAsUint32Array } from '@/core/tests/utils';
 import { PARTICLE_STRIDE } from '@/core/classes/GPU/Kernels/Compute/InitParticlesKernel';
 import type { GPUContext } from '@/core/classes/GPU/Context';
 
 export const RadixSortDebug = async (context: GPUContext) => {
-  const inputTextureData = await readStorageTexture(context.device, context.textures.hilbertTexture, getAsUint32Array);
-  const inputExtractedData = extractData(inputTextureData, HILBERT_INDEX_STRIDE, context.particleCount);
+  const inputTextureData = await readStorageTexture(context.device, context.textures.mortonTexture, getAsUint32Array);
+  const inputExtractedData = extractData(inputTextureData, MORTON_INDEX_STRIDE, context.particleCount);
 
   console.log('[RadixSort] inputTexture', inputExtractedData);
 
-  const outputTextureData = await readStorageTexture(context.device, context.textures.sortedHilbertTexture, getAsUint32Array);
-  const outputExtractedData = extractData(outputTextureData, HILBERT_INDEX_STRIDE, context.particleCount);
-  const isSorted = outputExtractedData.every(([hilbertKey], index, arr) => index === 0 || hilbertKey >= arr[index - 1][0]);
+  const outputTextureData = await readStorageTexture(context.device, context.textures.sortedMortonTexture, getAsUint32Array);
+  const outputExtractedData = extractData(outputTextureData, MORTON_INDEX_STRIDE, context.particleCount);
+  const isSorted = outputExtractedData.every(([mortonKey], index, arr) => index === 0 || mortonKey >= arr[index - 1][0]);
 
   console.log('[RadixSort] outputTexture', outputExtractedData);
 
