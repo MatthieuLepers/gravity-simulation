@@ -2,6 +2,11 @@ import HilbertCurveShaderCode from '@/core/classes/GPU/Kernels/Compute/HilbertCu
 import { ComputeKernel } from '@/core/classes/GPU/Kernels/Compute';
 import type { GPUContext } from '@/core/classes/GPU/Context';
 
+// The existing texture/kernel names are retained for compatibility; keys are Morton codes.
+export const MORTON_GRID_SIZE = 1024;
+export const MORTON_MIN_BOUND = -100;
+export const MORTON_MAX_BOUND = 100;
+
 export const HILBERT_INDEX_STRIDE = 2;
 
 export const PIXELS_PER_HILBERT_INDEX = Math.ceil(HILBERT_INDEX_STRIDE / 4);
@@ -36,6 +41,9 @@ export class HilbertCurveKernel extends ComputeKernel {
     this
       .initPipeline(HilbertCurveShaderCode, 'cs_hilbert_curve', {
         PARTICLE_COUNT: this.context.particleCount,
+        GRID_SIZE: MORTON_GRID_SIZE,
+        MIN_BOUND: MORTON_MIN_BOUND,
+        MAX_BOUND: MORTON_MAX_BOUND,
       })
       .setBinding(0, this.context.textures.particleTexture.createView())
       .setBinding(1, this.context.textures.hilbertTexture.createView())
