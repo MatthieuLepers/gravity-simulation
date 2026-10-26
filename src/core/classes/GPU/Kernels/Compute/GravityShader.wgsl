@@ -76,7 +76,10 @@ fn cs_main(
 
   var totalForce = vec3<f32>(0.0, 0.0, 0.0);
 
-  for (var j: u32 = workgroup_id.x; j < workgroup_id.x + WORKGROUP_SIZE; j++) {
+  let workgroupStart = workgroup_id.x * WORKGROUP_SIZE;
+  let workgroupEnd = min(workgroupStart + WORKGROUP_SIZE, PARTICLE_COUNT);
+
+  for (var j: u32 = workgroupStart; j < workgroupEnd; j++) {
     if (i == j || j >= PARTICLE_COUNT) { continue; }
 
     let particle_j = getParticle(j);
