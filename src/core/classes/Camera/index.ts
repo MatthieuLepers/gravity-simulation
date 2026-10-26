@@ -1,9 +1,9 @@
 import { mat4, vec3 } from 'wgpu-matrix';
 
-import { createInputHandler, type InputHandler } from '@/core/classes/Camera/Input';
-import type { Camera as ICamera } from '@/core/classes/Camera/i';
-import { WASDCamera } from '@/core/classes/Camera/WASDCamera';
 import { ArcballCamera } from '@/core/classes/Camera/ArcballCamera';
+import type { Camera as ICamera } from '@/core/classes/Camera/i';
+import { createInputHandler, type InputHandler } from '@/core/classes/Camera/Input';
+import { WASDCamera } from '@/core/classes/Camera/WASDCamera';
 
 export class Camera {
   private inputHandler: InputHandler;

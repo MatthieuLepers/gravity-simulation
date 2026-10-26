@@ -2,12 +2,12 @@ import { GUI } from 'dat.gui';
 
 import { Camera } from '@/core/classes/Camera';
 import { DistributionType } from '@/core/classes/DistributionType';
-import { RenderPass } from '@/core/classes/GPU/Passes/RenderPass';
-// import { Texture2DKernel } from '@/core/classes/GPU/Kernels/Render/Texture2DKernel';
-import { BillboardingKernel } from '@/core/classes/GPU/Kernels/Render/BillboardingKernel';
 // import { OctreeNodeKernel } from '@/core/classes/GPU/Kernels/Render/OctreeNodeKernel';
 import { GPUContext } from '@/core/classes/GPU/Context';
 import { MakeInterstellarCloud } from '@/core/classes/GPU/InterstellarCloud';
+// import { Texture2DKernel } from '@/core/classes/GPU/Kernels/Render/Texture2DKernel';
+import { BillboardingKernel } from '@/core/classes/GPU/Kernels/Render/BillboardingKernel';
+import { RenderPass } from '@/core/classes/GPU/Passes/RenderPass';
 
 import './style.css';
 

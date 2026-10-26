@@ -1,8 +1,8 @@
 import {
-  mat4,
-  vec3,
   type Mat4,
+  mat4,
   type Vec3,
+  vec3,
 } from 'wgpu-matrix';
 
 // The common functionality between camera implementations

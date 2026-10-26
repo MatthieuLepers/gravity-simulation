@@ -1,6 +1,6 @@
-import { serial } from '@/core/utils';
-import type { ComputeKernel } from '@/core/classes/GPU/Kernels/Compute';
 import type { GPUContext } from '@/core/classes/GPU/Context';
+import type { ComputeKernel } from '@/core/classes/GPU/Kernels/Compute';
+import { serial } from '@/core/utils';
 
 export class ComputePass {
   public kernels: Array<ComputeKernel> = [];

@@ -1,7 +1,7 @@
-import OctreeNodeShaderCode from '@/core/classes/GPU/Kernels/Render/OctreeNodeShader.wgsl?raw';
-import { RenderKernel } from '@/core/classes/GPU/Kernels/Render';
-import type { RenderPass } from '@/core/classes/GPU/Passes/RenderPass';
 import { getMaxNodes } from '@/core/classes/GPU/Kernels/Compute/Octree/InitOctreeKernel';
+import { RenderKernel } from '@/core/classes/GPU/Kernels/Render';
+import OctreeNodeShaderCode from '@/core/classes/GPU/Kernels/Render/OctreeNodeShader.wgsl?raw';
+import type { RenderPass } from '@/core/classes/GPU/Passes/RenderPass';
 
 export class OctreeNodeKernel extends RenderKernel {
   constructor(renderPass: RenderPass) {

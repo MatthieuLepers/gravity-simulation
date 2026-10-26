@@ -1,5 +1,5 @@
-import OctreeShaderCode from '@/core/classes/GPU/Kernels/Compute/OctreeShader.wgsl?raw';
 import { ComputeKernel } from '@/core/classes/GPU/Kernels/Compute';
+import OctreeShaderCode from '@/core/classes/GPU/Kernels/Compute/Octree/OctreeShader.wgsl?raw';
 
 export const OCTREE_NODE_STRIDE = 24;
 

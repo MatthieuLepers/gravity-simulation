@@ -1,5 +1,5 @@
-import Texture2DShaderCode from '@/core/classes/GPU/Kernels/Render/Texture2DShader.wgsl?raw';
 import { RenderKernel } from '@/core/classes/GPU/Kernels/Render';
+import Texture2DShaderCode from '@/core/classes/GPU/Kernels/Render/Texture2DShader.wgsl?raw';
 import type { RenderPass } from '@/core/classes/GPU/Passes/RenderPass';
 
 export class Texture2DKernel extends RenderKernel {

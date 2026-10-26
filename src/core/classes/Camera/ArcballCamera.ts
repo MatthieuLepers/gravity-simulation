@@ -1,7 +1,7 @@
 import {
   type Mat4,
-  type Vec3,
   mat4,
+  type Vec3,
   vec3,
 } from 'wgpu-matrix';
 

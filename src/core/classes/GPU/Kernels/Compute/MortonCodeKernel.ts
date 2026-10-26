@@ -1,6 +1,6 @@
-import MortonCodeShaderCode from '@/core/classes/GPU/Kernels/Compute/MortonCodeShader.wgsl?raw';
-import { ComputeKernel } from '@/core/classes/GPU/Kernels/Compute';
 import type { GPUContext } from '@/core/classes/GPU/Context';
+import { ComputeKernel } from '@/core/classes/GPU/Kernels/Compute';
+import MortonCodeShaderCode from '@/core/classes/GPU/Kernels/Compute/MortonCodeShader.wgsl?raw';
 
 // The existing texture/kernel names are retained for compatibility; keys are Morton codes.
 export const MORTON_GRID_SIZE = 1024;

@@ -1,4 +1,4 @@
-import { Kernel, type IRunKernelOptions } from '@/core/classes/GPU/Kernels';
+import { type IRunKernelOptions,Kernel } from '@/core/classes/GPU/Kernels';
 import type { ComputePass } from '@/core/classes/GPU/Passes/ComputePass';
 
 export abstract class ComputeKernel extends Kernel<ComputePass, GPUComputePipeline> {

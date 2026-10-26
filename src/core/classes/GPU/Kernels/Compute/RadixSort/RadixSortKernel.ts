@@ -1,8 +1,8 @@
-import { ComputePass } from '@/core/classes/GPU/Passes/ComputePass';
 import { ComputeKernel } from '@/core/classes/GPU/Kernels/Compute';
 import { BuildHistogramKernel } from '@/core/classes/GPU/Kernels/Compute/RadixSort/BuildHistogramKernel';
 import { PrefixSumKernel } from '@/core/classes/GPU/Kernels/Compute/RadixSort/PrefixSumKernel';
 import { ScatterKernel } from '@/core/classes/GPU/Kernels/Compute/RadixSort/ScatterKernel';
+import { ComputePass } from '@/core/classes/GPU/Passes/ComputePass';
 
 export class RadixSortKernel extends ComputeKernel {
   async prepare(): Promise<void> {

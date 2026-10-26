@@ -1,8 +1,8 @@
 import type { GPUContext } from '@/core/classes/GPU/Context';
-import { ComputePass } from '@/core/classes/GPU/Passes/ComputePass';
-import { InitParticlesKernel } from '@/core/classes/GPU/Kernels/Compute/InitParticlesKernel';
 import { GravityKernel } from '@/core/classes/GPU/Kernels/Compute/GravityKernel';
+import { InitParticlesKernel } from '@/core/classes/GPU/Kernels/Compute/InitParticlesKernel';
 import { MortonCodeKernel } from '@/core/classes/GPU/Kernels/Compute/MortonCodeKernel';
+import { ComputePass } from '@/core/classes/GPU/Passes/ComputePass';
 import { MortonCodeDebug } from '@/core/tests/MortonCode';
 // import { CollisionKernel } from '@/core/classes/GPU/Kernels/Compute/CollisionKernel';
 

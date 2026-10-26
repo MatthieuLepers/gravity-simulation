@@ -1,6 +1,6 @@
-import CollisionShaderCode from '@/core/classes/GPU/Kernels/Compute/CollisionShader.wgsl?raw';
-import { ComputeKernel } from '@/core/classes/GPU/Kernels/Compute';
 import type { GPUContext } from '@/core/classes/GPU/Context';
+import { ComputeKernel } from '@/core/classes/GPU/Kernels/Compute';
+import CollisionShaderCode from '@/core/classes/GPU/Kernels/Compute/CollisionShader.wgsl?raw';
 
 export class CollisionKernel extends ComputeKernel {
   constructor(context: GPUContext) {

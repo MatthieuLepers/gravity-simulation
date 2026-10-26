@@ -1,4 +1,4 @@
-import { vec3, type Vec3 } from 'wgpu-matrix';
+import { type Vec3, vec3 } from 'wgpu-matrix';
 
 export function toCamelCase(str: string): string {
   return str
@@ -10,7 +10,7 @@ export function toCamelCase(str: string): string {
   ;
 }
 
-export function debounce(callback: Function, delay: number) {
+export function debounce(callback: () => void, delay: number) {
   let timer: number;
   return function () {
     window.clearTimeout(timer);

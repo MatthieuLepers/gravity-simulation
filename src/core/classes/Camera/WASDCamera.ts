@@ -3,14 +3,15 @@
 // This is intentional, as this sample prefers readability over performance.
 import {
   type Mat4,
-  type Vec3,
   mat4,
+  type Vec3,
   vec3,
 } from 'wgpu-matrix';
-import type Input from '@/core/classes/Camera/Input';
+
 import { CameraBase } from '@/core/classes/Camera/CameraBase';
 import type { Camera } from '@/core/classes/Camera/i';
-import { mod, clamp, lerp } from '@/core/classes/Camera/utils';
+import type Input from '@/core/classes/Camera/Input';
+import { clamp, lerp,mod } from '@/core/classes/Camera/utils';
 
 // WASDCamera is a camera implementation that behaves similar to first-person-shooter PC games.
 export class WASDCamera extends CameraBase implements Camera {

@@ -1,8 +1,8 @@
-import InitParticlesShaderCode from '@/core/classes/GPU/Kernels/Compute/InitParticlesShader.wgsl?raw';
 import { CreateNoiseTexture } from '@/core/classes/DistributionType';
-import { elements, flatten } from '@/core/classes/ParticleData';
-import { ComputeKernel } from '@/core/classes/GPU/Kernels/Compute';
 import type { GPUContext } from '@/core/classes/GPU/Context';
+import { ComputeKernel } from '@/core/classes/GPU/Kernels/Compute';
+import InitParticlesShaderCode from '@/core/classes/GPU/Kernels/Compute/InitParticlesShader.wgsl?raw';
+import { elements, flatten } from '@/core/classes/ParticleData';
 
 export const PARTICLE_STRIDE = 16;
 

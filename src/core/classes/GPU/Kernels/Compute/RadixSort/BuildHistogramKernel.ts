@@ -1,6 +1,6 @@
-import RadixSortShaderCode from '@/core/classes/GPU/Kernels/Compute/RadixSortShader.wgsl?raw';
-import { ComputeKernel } from '@/core/classes/GPU/Kernels/Compute';
 import type { GPUContext } from '@/core/classes/GPU/Context';
+import { ComputeKernel } from '@/core/classes/GPU/Kernels/Compute';
+import RadixSortShaderCode from '@/core/classes/GPU/Kernels/Compute/RadixSort/RadixSortShader.wgsl?raw';
 
 export class BuildHistogramKernel extends ComputeKernel {
   constructor(context: GPUContext) {

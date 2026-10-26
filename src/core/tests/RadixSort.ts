@@ -1,8 +1,8 @@
+import type { GPUContext } from '@/core/classes/GPU/Context';
+import { PARTICLE_STRIDE } from '@/core/classes/GPU/Kernels/Compute/InitParticlesKernel';
 import { MORTON_INDEX_STRIDE } from '@/core/classes/GPU/Kernels/Compute/MortonCodeKernel';
 import { readStorageTexture } from '@/core/classes/utils';
 import { extractData, getAsUint32Array } from '@/core/tests/utils';
-import { PARTICLE_STRIDE } from '@/core/classes/GPU/Kernels/Compute/InitParticlesKernel';
-import type { GPUContext } from '@/core/classes/GPU/Context';
 
 export const RadixSortDebug = async (context: GPUContext) => {
   const inputTextureData = await readStorageTexture(context.device, context.textures.mortonTexture, getAsUint32Array);

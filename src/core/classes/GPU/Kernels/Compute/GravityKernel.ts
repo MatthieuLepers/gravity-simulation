@@ -1,6 +1,6 @@
-import GravityShaderCode from '@/core/classes/GPU/Kernels/Compute/GravityShader.wgsl?raw';
-import { ComputeKernel } from '@/core/classes/GPU/Kernels/Compute';
 import type { GPUContext } from '@/core/classes/GPU/Context';
+import { ComputeKernel } from '@/core/classes/GPU/Kernels/Compute';
+import GravityShaderCode from '@/core/classes/GPU/Kernels/Compute/GravityShader.wgsl?raw';
 
 export class GravityKernel extends ComputeKernel {
   constructor(context: GPUContext) {

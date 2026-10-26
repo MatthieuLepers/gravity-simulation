@@ -1,5 +1,5 @@
-import BillboardingShaderCode from '@/core/classes/GPU/Kernels/Render/BillboardingShader.wgsl?raw';
 import { RenderKernel } from '@/core/classes/GPU/Kernels/Render';
+import BillboardingShaderCode from '@/core/classes/GPU/Kernels/Render/BillboardingShader.wgsl?raw';
 import type { RenderPass } from '@/core/classes/GPU/Passes/RenderPass';
 
 export class BillboardingKernel extends RenderKernel {
