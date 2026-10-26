@@ -3,10 +3,16 @@ import { ComputePass } from '@/core/classes/GPU/Passes/ComputePass';
 import { InitParticlesKernel } from '@/core/classes/GPU/Kernels/Compute/InitParticlesKernel';
 import { GravityKernel } from '@/core/classes/GPU/Kernels/Compute/GravityKernel';
 import { MortonCodeKernel } from '@/core/classes/GPU/Kernels/Compute/MortonCodeKernel';
+import { MortonCodeDebug } from '@/core/tests/MortonCode';
 // import { CollisionKernel } from '@/core/classes/GPU/Kernels/Compute/CollisionKernel';
 
+const DEBUG_ENABLED = false;
+const DEBUG = {
+  morton: false,
+};
+
 export const MakeInterstellarCloud = async (context: GPUContext) => {
-  // Pass 1 - Init & Gravity
+  // Pass 1 - Init, Morton Code & Gravity
   const pass1 = ComputePass.create(context);
 
   if (!context.initParticlesDone) {
@@ -19,4 +25,11 @@ export const MakeInterstellarCloud = async (context: GPUContext) => {
   await pass1.submit();
 
   [context.textures.particleTexture, context.textures.sortedParticleTexture] = [context.textures.sortedParticleTexture, context.textures.particleTexture];
+
+  if (DEBUG_ENABLED) {
+    if (!DEBUG.morton) {
+      await MortonCodeDebug(context);
+      DEBUG.morton = true;
+    }
+  }
 };

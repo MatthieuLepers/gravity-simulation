@@ -6,6 +6,13 @@ import type { GPUContext } from '@/core/classes/GPU/Context';
 export const MortonCodeDebug = async (context: GPUContext) => {
   const textureData = await readStorageTexture(context.device, context.textures.mortonTexture, getAsUint32Array);
   const extractedData = extractData(textureData, MORTON_INDEX_STRIDE, context.particleCount);
+  const particuleIndexGroupedByMortonCode = extractedData.reduce((acc, val) => ({
+    ...acc,
+    [val[0]]: [
+      ...(acc[val[0]] ?? []),
+      val[1],
+    ],
+  }), {} as Record<string, Array<number>>);
 
-  console.log('[MortonCode] mortonTexture', extractedData);
+  console.log('[MortonCode] mortonTexture', extractedData, particuleIndexGroupedByMortonCode);
 };

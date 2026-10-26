@@ -14,7 +14,7 @@ override MIN_BOUND: f32;
 override MAX_BOUND: f32;
 
 @group(0) @binding(0) var particleTextureRead: texture_storage_2d<rgba32float, read>;
-@group(0) @binding(1) var hilbertTextureWrite: texture_storage_2d<rg32uint, write>;
+@group(0) @binding(1) var mortonTextureWrite: texture_storage_2d<rg32uint, write>;
 
 fn getParticle(index: u32) -> Particle {
   let dimX = textureDimensions(particleTextureRead).r;
@@ -75,12 +75,12 @@ fn morton3D(position: vec3<f32>) -> u32 {
   return interleave_bits(xi, yi, zi);
 }
 
-fn setMortonIndex(particleIndex: u32, hilbert: vec4<u32>) {
-  let dimX = textureDimensions(hilbertTextureWrite).x;
+fn setMortonIndex(particleIndex: u32, morton: vec4<u32>) {
+  let dimX = textureDimensions(mortonTextureWrite).x;
   let x = i32(particleIndex % dimX);
   let y = i32((particleIndex / dimX));
 
-  textureStore(hilbertTextureWrite, vec2<i32>(x, y), hilbert);
+  textureStore(mortonTextureWrite, vec2<i32>(x, y), morton);
 }
 
 @compute @workgroup_size(256)
