@@ -9,6 +9,9 @@ struct Particle {
 }
 
 override PARTICLE_COUNT: u32;
+override GRID_SIZE: u32;
+override MIN_BOUND: f32;
+override MAX_BOUND: f32;
 
 @group(0) @binding(0) var particleTextureRead: texture_storage_2d<rgba32float, read>;
 @group(0) @binding(1) var hilbertTextureWrite: texture_storage_2d<rg32uint, write>;
@@ -58,13 +61,18 @@ fn interleave_bits(xi: u32, yi: u32, zi: u32) -> u32 {
   return x | (y << 1u) | (z << 2u);
 }
 
-fn hilbert3D(position: vec3<f32>, minBounds: vec3<f32>, maxBounds: vec3<f32>, gridSize: f32) -> u32 {
-  let normalized = (position - minBounds) / (maxBounds - minBounds);
-  let xi = min(normalized.x * f32(gridSize), gridSize - 1.0);
-  let yi = min(normalized.y * f32(gridSize), gridSize - 1.0);
-  let zi = min(normalized.z * f32(gridSize), gridSize - 1.0);
+fn morton3D(position: vec3<f32>) -> u32 {
+  let normalized = (position - vec3<f32>(MIN_BOUND)) / (MAX_BOUND - MIN_BOUND);
+  let maxCell = GRID_SIZE - 1u;
+  let maxCellF = f32(maxCell);
 
-  return interleave_bits(bitcast<u32>(xi), bitcast<u32>(yi), bitcast<u32>(zi));
+  // Clamp positions outside the configured cube and quantize to integer grid cells.
+  // GRID_SIZE is 1024, so each axis contributes 10 bits to the 30-bit Morton key.
+  let xi = u32(clamp(floor(normalized.x * f32(GRID_SIZE)), 0.0, maxCellF));
+  let yi = u32(clamp(floor(normalized.y * f32(GRID_SIZE)), 0.0, maxCellF));
+  let zi = u32(clamp(floor(normalized.z * f32(GRID_SIZE)), 0.0, maxCellF));
+
+  return interleave_bits(xi, yi, zi);
 }
 
 fn setHilbertIndex(particleIndex: u32, hilbert: vec4<u32>) {
@@ -82,10 +90,8 @@ fn cs_hilbert_curve(@builtin(global_invocation_id) id: vec3<u32>) {
 
   let particle = getParticle(i);
 
-  let gridSize = 100.0;
-  let minCorner = vec3<f32>(-100.0);
-  let maxCorner = vec3<f32>(100.0);
-  let hilbertKey = hilbert3D(particle.position, minCorner, maxCorner, gridSize);
+  let mortonKey = morton3D(particle.position);
 
-  setHilbertIndex(i, vec4<u32>(hilbertKey, i, 0u, 0u));
+  // rg32uint stores the 32-bit key and original particle index without float conversion.
+  setHilbertIndex(i, vec4<u32>(mortonKey, i, 0u, 0u));
 }
